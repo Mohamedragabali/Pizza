@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.pizza.ui.screens.CustomPizzaScreen
+import com.example.pizza.ui.screens.custom_pizza.CustomPizzaScreen
 import com.example.pizza.ui.theme.PizzaTheme
 
 @Composable
