@@ -1,5 +1,6 @@
 package com.example.pizza.ui.screens.custom_pizza
 
+import android.util.Log
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateDp
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pizza.R
+import com.example.pizza.ui.screens.custom_pizza.FivePizzaHased.FivePizza.listOfFiveTypePizza
 import com.example.pizza.ui.screens.custom_pizza.composable.Header
 import com.example.pizza.ui.screens.custom_pizza.utils.PizzaSize
 
@@ -58,15 +60,27 @@ fun CustomPizzaScreen(
     )
 
 
+    var buttonNumber by remember { mutableIntStateOf(listOfFiveTypePizza[pagerState.currentPage].pizzaSize.ordinal) }
 
 
+    val onClickButtonOne = {
+        listOfFiveTypePizza[pagerState.currentPage] =
+            listOfFiveTypePizza[pagerState.currentPage].copy(pizzaSize = PizzaSize.SMALL )
 
-    var buttonNumber by remember { mutableIntStateOf(PizzaSize.MEDIUM.ordinal) }
+        buttonNumber = PizzaSize.SMALL.ordinal
+    }
+    val onClickButtonTow = {
+        listOfFiveTypePizza[pagerState.currentPage] =
+            listOfFiveTypePizza[pagerState.currentPage].copy(pizzaSize = PizzaSize.MEDIUM )
 
+        buttonNumber = PizzaSize.MEDIUM.ordinal
+    }
+    val onClickButtonThree = {
+        listOfFiveTypePizza[pagerState.currentPage] =
+            listOfFiveTypePizza[pagerState.currentPage].copy(pizzaSize = PizzaSize.LARGE )
 
-    val onClickButtonOne = { buttonNumber =PizzaSize.SMALL.ordinal  }
-    val onClickButtonTow = { buttonNumber = PizzaSize.MEDIUM.ordinal }
-    val onClickButtonThree = { buttonNumber = PizzaSize.LARGE.ordinal }
+        buttonNumber = PizzaSize.LARGE.ordinal
+    }
 
     val transition = updateTransition(targetState = buttonNumber)
 
@@ -117,6 +131,24 @@ fun CustomPizzaScreen(
 
         }
     }
+
+    when(pagerState.currentPage){
+        0->{
+            buttonNumber = listOfFiveTypePizza[0].pizzaSize.ordinal
+        }
+        1 ->{
+            buttonNumber = listOfFiveTypePizza[1].pizzaSize.ordinal
+        }
+        2->{
+            buttonNumber = listOfFiveTypePizza[2].pizzaSize.ordinal
+        }
+        3->{
+            buttonNumber = listOfFiveTypePizza[3].pizzaSize.ordinal
+        }
+        4->{
+            buttonNumber = listOfFiveTypePizza[4].pizzaSize.ordinal
+        }
+    }
     CustomPizzaContent(
         pagerState = pagerState,
         breadList = breadList,
@@ -147,11 +179,11 @@ private fun CustomPizzaContent(
     Column(
         modifier = modifier,
     ) {
-        Header(
-            headerTitle = "Pizaa",
-            rightIcon = R.drawable.heart,
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp)
-        )
+//        Header(
+//            headerTitle = "Pizaa",
+//            rightIcon = R.drawable.heart,
+//            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp)
+//        )
 
         Box(
             modifier = Modifier
@@ -159,6 +191,7 @@ private fun CustomPizzaContent(
                 .fillMaxHeight(0.45f)
                 .padding(vertical = 32.dp),
         ) {
+
             Image(
                 painter = painterResource(R.drawable.plate),
                 contentDescription = null,
@@ -194,63 +227,63 @@ private fun CustomPizzaContent(
         }
 
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Row(
-                modifier = Modifier.padding(start = cardPaddingStart , end =cardPaddingEnd),
-            ) {
-                Card(
-                    shape = CircleShape,
-                    colors = CardDefaults.cardColors(
-                        containerColor =androidx.
-                        compose.ui.graphics.Color(0xDEFFFFFF)
-                        ,
-                    ),
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 18.dp
-                    ),
-                    modifier = Modifier
-                        .size(48.dp)
-                ) {
-                }
-            }
-
-            Text(
-                text = "S",
-                fontSize = 20.sp,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .padding(end = 128.dp)
-                .clickable(onClick = onClickButtonOne)
-            )
-
-
-
-            Text(
-                text = "M",
-                modifier = Modifier
-                    .clickable(onClick = onClickButtonTow),
-                fontSize = 20.sp,
-                textAlign = TextAlign.Center
-            )
-
-
-
-            Text(
-                text = "L",
-                modifier = Modifier
-                    .padding(start = 128.dp)
-                    .clickable(onClick = onClickButtonThree)
-                ,fontSize = 20.sp,
-                textAlign = TextAlign.Center
-            )
-
-
-        }
+//        Box(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .height(48.dp),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            Row(
+//                modifier = Modifier.padding(start = cardPaddingStart , end =cardPaddingEnd),
+//            ) {
+//                Card(
+//                    shape = CircleShape,
+//                    colors = CardDefaults.cardColors(
+//                        containerColor =androidx.
+//                        compose.ui.graphics.Color(0xDEFFFFFF)
+//                        ,
+//                    ),
+//                    elevation = CardDefaults.cardElevation(
+//                        defaultElevation = 18.dp
+//                    ),
+//                    modifier = Modifier
+//                        .size(48.dp)
+//                ) {
+//                }
+//            }
+//
+//            Text(
+//                text = "S",
+//                fontSize = 20.sp,
+//                textAlign = TextAlign.Center,
+//                modifier = Modifier
+//                    .padding(end = 128.dp)
+//                .clickable(onClick = onClickButtonOne)
+//            )
+//
+//
+//
+//            Text(
+//                text = "M",
+//                modifier = Modifier
+//                    .clickable(onClick = onClickButtonTow),
+//                fontSize = 20.sp,
+//                textAlign = TextAlign.Center
+//            )
+//
+//
+//
+//            Text(
+//                text = "L",
+//                modifier = Modifier
+//                    .padding(start = 128.dp)
+//                    .clickable(onClick = onClickButtonThree)
+//                ,fontSize = 20.sp,
+//                textAlign = TextAlign.Center
+//            )
+//
+//
+//        }
 
 
     }
@@ -318,19 +351,19 @@ fun CustomPizzaContentPreview(
         }
     }
 
-    CustomPizzaContent(
-        pagerState = rememberPagerState(
-            pageCount = { 5 }
-        ),
-        breadList = listOf(R.drawable.bread_1, R.drawable.bread_2, R.drawable.bread_3),
-        onClickButtonOne = onClickButtonOne,
-        onClickButtonTow = onClickButtonTow,
-        onClickButtonThree = onClickButtonThree,
-
-        cardPaddingStart = cardPaddingStart,
-        cardPaddingEnd = cardPaddingEnd,
-
-        breadSize = breadSize,
-        modifier = Modifier.padding(vertical = 48.dp)
-    )
+//    CustomPizzaContent(
+//        pagerState = rememberPagerState(
+//            pageCount = { 5 }
+//        ),
+//        breadList = listOf(R.drawable.bread_1, R.drawable.bread_2, R.drawable.bread_3),
+//        onClickButtonOne = onClickButtonOne,
+//        onClickButtonTow = onClickButtonTow,
+//        onClickButtonThree = onClickButtonThree,
+//
+//        cardPaddingStart = cardPaddingStart,
+//        cardPaddingEnd = cardPaddingEnd,
+//
+//        breadSize = breadSize,
+//        modifier = Modifier.padding(vertical = 48.dp)
+//    )
 }

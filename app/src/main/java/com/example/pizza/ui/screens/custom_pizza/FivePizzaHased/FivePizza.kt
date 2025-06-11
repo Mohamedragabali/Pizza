@@ -4,7 +4,7 @@ import com.example.pizza.R
 import com.example.pizza.ui.screens.custom_pizza.model.PizzaUiState
 
 object FivePizza {
-    val listOfFiveTypePizza = listOf(
+    val listOfFiveTypePizza = mutableListOf(
         PizzaUiState(
             pizzaBreadImage = R.drawable.bread_1,
         ),
@@ -22,11 +22,5 @@ object FivePizza {
         ),
     )
 
-    val listOfImageOfFiveTypePizza = listOf<Int>(
-        R.drawable.bread_1,
-        R.drawable.bread_2,
-        R.drawable.bread_3,
-        R.drawable.bread_4,
-        R.drawable.bread_5
-    )
+
 }
